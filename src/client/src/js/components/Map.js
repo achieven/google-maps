@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import GoogleMapReact from 'google-map-react';
 
-import Marker from './Marker'
+import Marker from '../containers/Marker'
 
 import '../../css/index.scss'
 
@@ -26,14 +26,15 @@ class Map extends Component  {
                     defaultZoom={this.props.zoom}
                     onClick={this.props.addLocation}
                 >
-                    {this.props.locations ? Object.keys(this.props.locations).map(location => {
-                        return <Marker lat={this.props.locations[location].lat} lng={this.props.locations[location].lng}/>
+                    {this.props.locations ? Object.keys(this.props.locations).map(key => {
+                        const marker = this.props.locations[key]
+                        return <Marker key={key} lat={marker.lat} lng={marker.lng}/>
                     }) : null}
                 </GoogleMapReact>
             </div>
         )
     }
-    
+
 }
 
 

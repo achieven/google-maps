@@ -6,9 +6,13 @@ class Marker extends Component {
     
     render() {
         return <>
-            <div className="pin"></div>
+            <div className="pin" onClick={this.props.removeLocation.bind(this, this.props.lat, this.props.lng)}></div>
             <div className="pulse"></div>
         </>
+    }
+    
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        return false
     }
 }
 

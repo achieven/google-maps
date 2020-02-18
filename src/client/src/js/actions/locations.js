@@ -10,3 +10,11 @@ export const addLocation = ({x, y, lat, lng}) => {
         lng: lng
     }
 }
+
+export const removeLocation = (lat, lng) => {
+    return {
+        type: removeLocationAction,
+        lat: lat,
+        lng: lng
+    }
+}
