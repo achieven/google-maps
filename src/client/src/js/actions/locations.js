@@ -1,16 +1,12 @@
 export const addLocationAction    = 'ADD_LOCATION'
 export const removeLocationAction = 'REMOVE_LOCATION'
 
-export const addLocation = id => {
+export const addLocation = ({x, y, lat, lng}) => {
     return {
         type: addLocationAction,
-        id: id
-    }
-}
-
-export const removeLocation = id => {
-    return {
-        type: removeLocationAction,
-        id: id
+        x: x,
+        y: y,
+        lat: lat,
+        lng: lng
     }
 }
