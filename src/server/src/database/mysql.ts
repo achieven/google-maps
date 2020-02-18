@@ -3,6 +3,8 @@ import { Sequelize } from 'sequelize'
 let sequelize = null
 
 //TODO check if can use single function for all callers, the first that initializes "wins"
+//TODO check when it is opening a connection, is it per request, is using a connection pool etc..
+//TODO close connection when finishing
 const getSequelize = (dbName = null, dbUsername = null, dbPassword = null, dbHost = null) => {
     if (null === sequelize) {
         sequelize = new Sequelize(dbName, dbUsername, dbPassword, {
