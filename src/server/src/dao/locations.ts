@@ -28,7 +28,7 @@ const createLocation = async (lat: number, lng: number) => {
 }
 
 const deleteLocation = async () => {
-    //TODO implement, need to index the field which identifies the deleted location
+    //TODO implement, need to index the field/s which identifies the deleted location
 }
 
 export {

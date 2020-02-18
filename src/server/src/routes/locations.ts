@@ -3,6 +3,8 @@ const router = express.Router()
 
 import { getLocations, createLocation, deleteLocation } from '../dao/locations'
 
+//TODO check if can marshal the response
+
 router.get('/', async (req, res) => {
     try {
         const locations = await getLocations()
