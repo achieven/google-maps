@@ -11,8 +11,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        addLocation: ({x, y, lat, lng, event}) => {
-            dispatch(addLocation({x, y, lat, lng}))
+        addLocation: async ({lat, lng}) => {
+            const newLocation = await addLocation(lat, lng)
+            dispatch(newLocation)
         }
     }
 }
