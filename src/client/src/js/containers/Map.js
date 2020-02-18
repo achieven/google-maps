@@ -5,7 +5,7 @@ import { addLocation } from '../actions/locations'
 
 const mapStateToProps = state => {
     return  {
-        locations: state.tree
+        locations: state.locations
     }
 }
 

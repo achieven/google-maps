@@ -27,15 +27,11 @@ class Map extends Component  {
                     onClick={this.props.addLocation}
                 >
                     {this.props.locations ? Object.keys(this.props.locations).map(location => {
-                        return <Marker lat={location.lat} lng={location.lng}/>
+                        return <Marker lat={this.props.locations[location].lat} lng={this.props.locations[location].lng}/>
                     }) : null}
                 </GoogleMapReact>
             </div>
         )
-    }
-
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-        return true
     }
     
 }
