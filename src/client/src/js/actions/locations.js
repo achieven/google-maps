@@ -26,11 +26,12 @@ export const addLocation = async (lat, lng) => {
     }
 }
 
-export const removeLocation = (lat, lng) => {
-    //TODO implement with backend (decide if deleting by id or by key)
+export const removeLocation = async (id) => {
+    await httpService(`location/${id}`, {
+        method: methods.PUT
+    })
     return {
         type: removeLocationAction,
-        lat: lat,
-        lng: lng
+        id
     }
 }

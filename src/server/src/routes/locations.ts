@@ -4,6 +4,7 @@ const router = express.Router()
 import { getLocations, createLocation, deleteLocation } from '../dao/locations'
 
 //TODO check if can marshal the response
+//TODO handle errors
 
 router.get('/', async (req, res) => {
     try {
@@ -26,9 +27,11 @@ router.post('/', async (req, res) => {
     }
 })
 
-router.delete('/', async (req, res) => {
+router.put('/:id', async (req, res) => {
+    const id = req.params.id
     try {
-        return await deleteLocation()
+        await deleteLocation(id)
+        return res.send({error: false, content: true})
     } catch (err) {
         return { error: true, content: err.message}
     }

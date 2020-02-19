@@ -4,6 +4,7 @@ const sequelize: any = getSequelize()
 
 class Location extends Model {}
 //TODO make sure no attacks such as xss, sqlinjection can occur (query builder)
+//TODO make ids be random, not sequential
 Location.init({
     lat: {
         type: DataTypes.DOUBLE,
@@ -19,6 +20,7 @@ Location.init({
 })
 Location.sync()
 
+//TODO try catch
 const getLocations = async () => {
     return await Location.findAll()
 }
@@ -27,8 +29,14 @@ const createLocation = async (lat: number, lng: number) => {
     return await Location.create({lat, lng})
 }
 
-const deleteLocation = async () => {
-    //TODO implement, need to index the field/s which identifies the deleted location
+const deleteLocation = async (id) => {
+    return await Location.destroy(
+        {
+            where: {
+                id: id
+            }
+        }
+    )
 }
 
 export {

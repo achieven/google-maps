@@ -6,7 +6,7 @@ class Marker extends Component {
     
     render() {
         return <>
-            <div className="pin" onClick={this.props.removeLocation.bind(this, this.props.lat, this.props.lng)}></div>
+            <div className="pin" onClick={this.props.removeLocation.bind(this, this.props.id)}></div>
             <div className="pulse"></div>
         </>
     }

@@ -1,8 +1,10 @@
 import * as express from 'express'
 import * as bodyParser from 'body-parser'
+import * as cors from 'cors'
 import { connect } from './database/mysql'
 
-const verifyCmdArguments = () => {
+//TODO put in util function
+const verifyEnvVariables = () => {
     const dbName     = process.env.DB_NAME
     const dbUsername = process.env.DB_USERNAME
     const dbPassword = process.env.DB_PASSWORD
@@ -17,21 +19,23 @@ const verifyCmdArguments = () => {
     return { dbName, dbUsername, dbPassword, dbHost, nodePort }
 }
 
-const envVariables = verifyCmdArguments()
+const envVariables = verifyEnvVariables()
 connect()
 const app = express()
 
-import { router } from './routes/locations' //TODO check if can import earlier (see TODO in mysql.ts)
+//TODO check if can import earlier (see TODO in mysql.ts)
+import { router as locationRouter } from './routes/locations'
 app.listen(envVariables.nodePort, () => {
     console.log(`listening on port ${envVariables.nodePort}`)
 })
 //TODO protect from other attacks, possibly using helmet.js
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "http://localhost:3000")
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
-    next()
-})
+app.use(cors(
+    {
+        origin: 'http://localhost:3000',
+        optionsSuccessStatus: 200
+    }
+))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-app.use('/location', router)
+app.use('/location', locationRouter)

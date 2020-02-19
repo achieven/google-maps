@@ -3,10 +3,12 @@ import { connect } from 'react-redux'
 import Marker from '../components/Marker'
 import { removeLocation } from '../actions/locations'
 
+//TODO add spinner, also in mapDispatchToProps  of Map container
 const mapDispatchToProps = dispatch => {
     return {
-        removeLocation: (lat, lng) => {
-            dispatch(removeLocation(lat, lng))
+        removeLocation: async (id) => {
+            const action = await removeLocation(id)
+            dispatch(action)
         }
     }
 }

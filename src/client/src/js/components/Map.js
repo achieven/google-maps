@@ -28,7 +28,7 @@ class Map extends Component  {
                 >
                     {this.props.locations ? Object.keys(this.props.locations).map(key => {
                         const marker = this.props.locations[key]
-                        return <Marker key={key} lat={marker.lat} lng={marker.lng}/>
+                        return <Marker key={key} lat={marker.lat} lng={marker.lng} id={marker.id}/>
                     }) : null}
                 </GoogleMapReact>
             </div>

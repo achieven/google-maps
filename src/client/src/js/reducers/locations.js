@@ -1,7 +1,6 @@
 import _ from 'lodash'
 
 import { addLocationAction, removeLocationAction, getLocationsAction } from '../actions/locations'
-import { locationToKey } from '../util/locations'
 
 
 const locations = (state = {}, action) => {
@@ -9,17 +8,17 @@ const locations = (state = {}, action) => {
     switch (action.type) {
         case addLocationAction:
             currentState = _.cloneDeep(state)
-            currentState[locationToKey(action)] = action
+            currentState[action.id] = action
             return currentState
         case removeLocationAction:
             currentState = _.cloneDeep(state)
-            delete currentState[locationToKey(action)]
+            delete currentState[action.id]
             return currentState
         case getLocationsAction:
             const locations = action.locations
             currentState = _.cloneDeep(state)
             locations.forEach((location) => {
-                currentState[locationToKey(location)] = location
+                currentState[location.id] = location
             })
             return currentState
         default:
